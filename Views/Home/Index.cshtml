@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYC Air Quality Dashboard</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            max-width: 1200px;
+            min-height: calc(100vh - 240px);
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styles */
+        .cta-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            margin-top: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* Features Section Styles */
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .feature-box {
+            flex: 0 1 calc(33.33% - 20px);
+            padding: 20px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+            .feature-box h3 {
+                color: #333;
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .feature-box p {
+                font-size: 14px;
+            }
+
+        /* Updated Hero Styles */
+        body #hero {
+            position: relative;
+            height: auto;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+            body #hero .hero-image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -1;
+            }
+
+            body #hero .hero-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 0;
+            }
+
+            body #hero .hero-content {
+                z-index: 1;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            body #hero h5 {
+                font-size: 36px !important;
+                padding: 10px 20px !important;
+                border-radius: 5px !important;
+                margin-bottom: 10px !important; /* Spacing between title and paragraph */
+                color: #fff !important;
+                text-decoration: none !important;
+                text-align: center !important;
+                font-family: sans-serif !important;
+                font-weight: normal !important;
+                line-height: 1.2 !important;
+            }
+
+            body #hero p {
+                font-size: 18px !important;
+                margin-bottom: 10px !important; /* Spacing between paragraph and button */
+                color: #fff !important;
+                text-decoration: none !important;
+                text-align: center !important;
+                font-family: 'Open Sans', sans-serif !important;
+                font-weight: normal !important;
+                line-height: 1.4 !important;
+            }
+
+            body #hero .cta-button {
+                background-color: #007bff;
+                color: #fff;
+                padding: 12px 20px;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: bold;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+                body #hero .cta-button:hover {
+                    background-color: #0056b3;
+                }
+
+
+        /* Add some space between sections */
+        section {
+            margin-bottom: 30px;
+        }
+
+        /* Frequently Asked Questions Section Styles */
+        .faq h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .faq-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .faq-item p {
+            font-size: 14px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <section id="hero">
+        <div class="hero-overlay"></div>
+        <img src="assets/newyork_image.png" alt="NYC skyline with clear sky" class="hero-image">
+        <div class="hero-content">
+            <h5>Welcome to NYC Air Quality</h5>
+            <p>Monitoring and analyzing air quality in New York City.</p>
+            <a href="airquality-overview.html" class="cta-button">Start Exploring Data</a>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Main Content -->
+    <main>
+        <h2>Our Mission & Vision</h2>
+        <p>At NYC Air Quality Dashboard, we are dedicated to providing comprehensive air quality data for New York City. Our vision is to create a healthier environment for all residents and visitors by raising awareness and promoting actions towards better air quality.</p>
+
+        <section>
+            <h2>Features of the Dashboard</h2>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>Historical Data</h3>
+                    <p>Delve deep into the past and see how air quality has changed over the years in NYC.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Health Insights</h3>
+                    <p>Understand the impact of different air quality indicators on human health.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Recent Data</h3>
+                    <p>Stay updated with the latest air quality data from across New York City.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Did You Know?</h2>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>Air Pollution's Global Impact</h3>
+                    <p>Air pollution causes about 1 in 8 deaths worldwide, making it the world's most significant environmental health risk.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>The Indoor Air Quality Paradox</h3>
+                    <p>Indoor air can be 2-5 times more polluted than outdoor air, yet we spend nearly 90% of our time indoors.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Nature's Air Purifiers</h3>
+                    <p>Plants can act as natural air purifiers, with some species known to remove up to 87% of air toxins in 24 hours.</p>
+                </div>
+            </div>
+        </section>
+        <section class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Q: How often is the data updated?</h3>
+                <p>A: We strive for real-time updates, but we depend on our data providers. The last update was one year ago.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Q: Can I access historical data?</h3>
+                <p>A: Yes, our platform provides access to historical air quality data for up to 10 years.</p>
+            </div>
+        </section>
+    </main>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</body>
+
+</html>

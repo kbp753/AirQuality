@@ -18,7 +18,22 @@ namespace AirQuality.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult AirQualityOverview()
+        {
+            return View();
+        }
+
+        public IActionResult DataModel()
+        {
+            return View();
+        }
+
+        public IActionResult Health()
+        {
+            return View();
+        }
+
+        public IActionResult About()
         {
             return View();
         }

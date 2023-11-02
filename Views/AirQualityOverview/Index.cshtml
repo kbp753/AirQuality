@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geographical Overview - NYC Air Quality</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        main {
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Styles for the table */
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            .overview-table th, .overview-table td {
+                border: 1px solid #ccc;
+                padding: 10px 15px;
+                text-align: left;
+            }
+
+            .overview-table tbody tr:hover {
+                background-color: #e9ecef;
+            }
+
+        /* Styles for the CRUD buttons */
+        .btn {
+            padding: 8px 12px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .btn.view {
+                background-color: #007bff;
+                color: #ffffff;
+                padding: 10px 15px;
+                border-radius: 25px;
+                transition: background-color 0.3s, color 0.3s;
+                border: 1px solid transparent;
+            }
+
+            .btn.edit {
+                background-color: #f0db4f;
+                color: #333;
+                padding: 10px 15px;
+                border-radius: 25px;
+                transition: background-color 0.3s, color 0.3s;
+                border: 1px solid transparent;
+            }
+
+            .btn.delete {
+                background-color: #dc3545;
+                color: #ffffff;
+                padding: 10px 15px;
+                border-radius: 25px;
+                transition: background-color 0.3s, color 0.3s;
+                border: 1px solid transparent;
+            }
+
+            .btn.add {
+                background-color: #28a745;
+                color: #ffffff;
+                margin-bottom: 20px;
+            }
+    </style>
+    <script>
+        // Script to load header and footer
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("airquality-header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector("#header").innerHTML = data;
+                });
+
+            fetch("airquality-footer.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector("#footer").innerHTML = data;
+                });
+        });
+
+        function addNewLocation() {
+            window.location.href = `add-edit-location.html`;
+        }
+
+        function editLocation(id) {
+            const locationName = document.querySelector(`tr[data-id="${id}"] td:first-child`).textContent;
+            const locationQuality = document.querySelector(`tr[data-id="${id}"] td:nth-child(2)`).textContent;
+            window.location.href = `add-edit-location.html?id=${id}&name=${locationName}&quality=${locationQuality}`;
+        }
+
+        function viewDetails(id) {
+            window.location.href = `airquality-details.html?id=${id}`;
+        }
+
+        function deleteLocation(id) {
+            if (confirm("Are you sure you want to delete this location?")) {
+                const row = document.querySelector(`tr[data-id="${id}"]`);
+                row.remove();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Placeholder for Header -->
+    <div id="header"></div>
+
+    <!-- Main Content -->
+    <main>
+        <h2>Geographical Overview of NYC Air Quality</h2>
+
+        <!-- Add new location button -->
+        <button class="btn add" onclick="addNewLocation()">Add New Location</button>
+
+        <!-- Locations Table -->
+        <table class="overview-table">
+            <thead>
+                <tr>
+                    <th>Location Name</th>
+                    <th>Last Recorded Quality</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample rows with data-id attributes for identification -->
+                <tr data-id="1">
+                    <td>Manhattan</td>
+                    <td>PM2.5 - Moderate</td>
+                    <td>
+                        <button class="btn view" onclick="viewDetails(1)">View</button>
+                        <button class="btn edit" onclick="editLocation(1)">Edit</button>
+                        <button class="btn delete" onclick="deleteLocation(1)">Delete</button>
+                    </td>
+                </tr>
+                <tr data-id="2">
+                    <td>Brooklyn</td>
+                    <td>Ozone (O3) - Good</td>
+                    <td>
+                        <button class="btn view" onclick="viewDetails(2)">View</button>
+                        <button class="btn edit" onclick="editLocation(2)">Edit</button>
+                        <button class="btn delete" onclick="deleteLocation(2)">Delete</button>
+                    </td>
+                </tr>
+                <!-- ... More rows can be added ... -->
+            </tbody>
+        </table>
+    </main>
+
+    <!-- Placeholder for Footer -->
+    <div id="footer"></div>
+</body>
+
+</html>

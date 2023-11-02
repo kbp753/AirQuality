@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Impact - NYC Air Quality Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h2, h3 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h4 {
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .horizontal-boxes {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .info-box {
+            flex: 1;
+            padding: 15px;
+            margin: 0 10px;
+            border: 1px solid #e7e7e7;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+            /* First & Last Child margin fix */
+            .info-box:first-child {
+                margin-left: 0;
+            }
+
+            .info-box:last-child {
+                margin-right: 0;
+            }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            border-bottom: 1px solid #007bff;
+            padding-bottom: 2px;
+            transition: color 0.3s ease;
+        }
+
+            a:hover {
+                color: #0056b3;
+            }
+
+        .intro-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .intro-section p {
+                font-size: 16px;
+                line-height: 1.6;
+                color: #555;
+                margin-bottom: 20px;
+            }
+    </style>
+    <script>
+        // Function to load header and footer
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("airquality-header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector("#header").innerHTML = data;
+                });
+
+            fetch("airquality-footer.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector("#footer").innerHTML = data;
+                });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Placeholder for Header -->
+    <div id="header"></div>
+
+    <!-- Main Content -->
+    <main>
+        <h2>Health Impact of Air Quality</h2>
+        <div class="intro-section">
+            <p>
+                Air quality is an essential determinant of health, impacting millions globally. While we often associate air with life, giving us oxygen to breathe, the very same air can become a silent threat when polluted. The contaminants present in polluted air can infiltrate our systems, leading to a multitude of health concerns, both short-term and long-term.
+            </p>
+            <p>
+                As urbanization and industrial activities grow, so does the concern about the quality of the air we breathe. The pollutants can range from tiny particulate matter, barely visible to the naked eye, to harmful gases. Each of these pollutants has its own health effects, with some causing immediate harm, while others affect us over extended periods of exposure.
+            </p>
+            <p>
+                Understanding the health implications of various air quality indicators is crucial. It not only helps individuals take preventive measures but also drives policy decisions on a larger scale. This section delves into the health impacts of prominent air quality indicators, shedding light on why it's imperative to monitor and act upon deteriorating air quality.
+            </p>
+        </div>
+        <h3>Key Air Quality Indicators & Their Impact</h3>
+        <div class="horizontal-boxes">
+            <!-- PM2.5 -->
+            <div class="info-box">
+                <h4>PM2.5 (Fine Particulate Matter)</h4>
+                <p>These particles can be inhaled deeply, possibly causing heart attacks, worsening asthma, and decreasing lung function.</p>
+            </div>
+
+            <!-- Ozone -->
+            <div class="info-box">
+                <h4>Ozone (O3)</h4>
+                <p>Ground-level ozone can trigger health issues, especially for vulnerable groups like children and the elderly.</p>
+            </div>
+
+            <!-- Nitrogen Dioxide -->
+            <div class="info-box">
+                <h4>Nitrogen Dioxide (NO2)</h4>
+                <p>High NO2 levels can irritate the lungs and lower resistance to respiratory infections.</p>
+            </div>
+
+            <!-- Sulfur Dioxide -->
+            <div class="info-box">
+                <h4>Sulfur Dioxide (SO2)</h4>
+                <p>Exposure to SO2 can harm the human respiratory system and make breathing difficult.</p>
+            </div>
+        </div>
+
+        <h3>Preventive Measures</h3>
+        <div class="horizontal-boxes">
+            <!-- Indoor Air Quality -->
+            <div class="info-box">
+                <h4>Indoor Air Quality</h4>
+                <p>Ensure good ventilation indoors. Consider using air purifiers to remove pollutants.</p>
+            </div>
+
+            <!-- Limiting Outdoor Activities -->
+            <div class="info-box">
+                <h4>Limiting Outdoor Activities</h4>
+                <p>On days with poor air quality, minimize outdoor physical activities, especially during peak pollution hours.</p>
+            </div>
+
+            <!-- Using Masks -->
+            <div class="info-box">
+                <h4>Using Masks</h4>
+                <p>Wearing masks can reduce the inhalation of harmful pollutants, especially in high traffic areas.</p>
+            </div>
+        </div>
+
+        <h3>Vulnerable Groups</h3>
+        <div class="horizontal-boxes">
+            <!-- Children -->
+            <div class="info-box">
+                <h4>Children</h4>
+                <p>Children's lungs are still developing, making them more susceptible to air pollutants.</p>
+            </div>
+
+            <!-- Elderly -->
+            <div class="info-box">
+                <h4>Elderly</h4>
+                <p>Older adults may have pre-existing health conditions that can be aggravated by poor air quality.</p>
+            </div>
+
+            <!-- People with Health Conditions -->
+            <div class="info-box">
+                <h4>People with Health Conditions</h4>
+                <p>Individuals with respiratory or cardiovascular conditions are at higher risk during poor air quality days.</p>
+            </div>
+        </div>
+
+        <h3>Frequently Asked Questions</h3>
+        <p><strong>Q: How can I check the air quality in my area?</strong></p>
+        <p>A: Several online platforms and mobile apps provide real-time air quality indices. You can also refer to the NYC Air Quality Dashboard for detailed metrics.</p>
+
+        <p><strong>Q: Are masks effective in preventing the inhalation of pollutants?</strong></p>
+        <p>A: Certain masks, like N95 respirators, can filter out small particulate matter and are recommended in areas with high pollution levels.</p>
+
+        <p><strong>Q: How does poor air quality affect children?</strong></p>
+        <p>A: Children are more vulnerable to the effects of air pollution as their lungs are still developing. It can exacerbate asthma symptoms and reduce lung growth.</p>
+
+    </main>
+
+    <!-- Placeholder for Footer -->
+    <div id="footer"></div>
+
+</body>
+</html>

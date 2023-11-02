@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Model - NYC Air Quality Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h3, h4 {
+            color: #333; /* Updated color from homepage */
+            border-bottom: 2px solid #007bff; /* Updated border color from homepage */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+            ul li {
+                margin-bottom: 10px;
+            }
+
+        table {
+            width: 60%; /* Adjusting the table's overall width */
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #e7e7e7; /* Ensuring that the table lines are visible */
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        td {
+            background-color: #f4f4f4;
+        }
+
+            th:nth-child(1), td:nth-child(1) {
+                width: 30%; /* Adjusted to 40% of the table width */
+            }
+
+            th:nth-child(2), td:nth-child(2) {
+                width: 70%; /* Adjusted to 60% of the table width */
+            }
+
+
+
+
+
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            border-bottom: 1px solid #007bff;
+            padding-bottom: 2px;
+            transition: color 0.3s ease;
+        }
+
+            a:hover {
+                color: #0056b3;
+            }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Additional styles from homepage for theme consistency */
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .feature-box {
+            flex: 0 1 calc(33.33% - 20px);
+            padding: 20px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+            .feature-box h3 {
+                color: #333;
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .feature-box p {
+                font-size: 14px;
+            }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            margin-top: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+            .cta-button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+
+    <script>
+        // Function to load header and footer
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("airquality-header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector("#header").innerHTML = data;
+                });
+
+            fetch("airquality-footer.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector("#footer").innerHTML = data;
+                });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Placeholder for Header -->
+    <div id="header"></div>
+
+    <!-- Main Content -->
+    <main>
+        <h2>Data Model for NYC Air Quality Dashboard</h2>
+
+        <p>
+            The data model behind the NYC Air Quality Dashboard is structured to provide a comprehensive and granular view of
+            air quality metrics. This page provides an overview of the data model and its components.
+        </p>
+
+        <h3>Key Data Fields:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Unique ID</strong></td>
+                    <td>An identifier for each data entry.</td>
+                </tr>
+                <tr>
+                    <td><strong>Indicator ID</strong></td>
+                    <td>A reference ID for the air quality indicator.</td>
+                </tr>
+                <tr>
+                    <td><strong>Name</strong></td>
+                    <td>Name of the air quality indicator (e.g., PM2.5, Ozone).</td>
+                </tr>
+                <tr>
+                    <td><strong>Measure</strong></td>
+                    <td>The type of measure (e.g., concentration).</td>
+                </tr>
+                <tr>
+                    <td><strong>Geo Type Name</strong></td>
+                    <td>The type of geographical region (e.g., city, county).</td>
+                </tr>
+                <tr>
+                    <td><strong>Geo Join ID</strong></td>
+                    <td>An ID to join with geographical data.</td>
+                </tr>
+                <tr>
+                    <td><strong>Geo Place Name</strong></td>
+                    <td>The name of the geographical location (e.g., New York City).</td>
+                </tr>
+                <tr>
+                    <td><strong>Time Period</strong></td>
+                    <td>The time period for the data (e.g., 2023).</td>
+                </tr>
+                <tr>
+                    <td><strong>Start Date</strong></td>
+                    <td>The starting date for the data entry.</td>
+                </tr>
+                <tr>
+                    <td><strong>Data Value</strong></td>
+                    <td>The value of the air quality metric.</td>
+                </tr>
+                <tr>
+                    <td><strong>Message</strong></td>
+                    <td>Any additional message or note related to the data.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>Visual Representation</h4>
+        <p>Locations and AirQualityData have a one-to-many relationship. One location can have multiple air quality data entries, but each data entry is associated with only one location. AirQualityIndicators and AirQualityData also have a one-to-many relationship. One indicator can be associated with multiple data entries, but each data entry corresponds to only one indicator.</p>
+        <img src="assets/DIS Image.png" alt="Data Model ERD" style="max-width: 70%;">
+
+        <!-- Data Source Section -->
+        <h3>Data Source</h3>
+        <p>
+            Our air quality data is sourced directly from the official <a href="https://data.cityofnewyork.us/Environment/Air-Quality/c3uy-2p5r" target="_blank">New York City Data Portal</a>. We pride ourselves on using authoritative and reliable data to provide accurate insights to our users.
+        </p>
+    </main>
+
+    <!-- Placeholder for Footer -->
+    <div id="footer"></div>
+</body>
+</html>

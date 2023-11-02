@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - NYC Air Quality</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        main {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            max-width: 1200px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .about-text {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .info {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h4 {
+            color: #007bff;
+            border-bottom: 1px solid #e7e7e7;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
+            float: left;
+        }
+
+        .but {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .but:hover {
+                background-color: #0056b3;
+            }
+
+        .person {
+            overflow: auto;
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <script>
+        // Script to load header and footer
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("airquality-header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector("#header").innerHTML = data;
+                });
+
+            fetch("airquality-footer.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector("#footer").innerHTML = data;
+                });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Placeholder for Header -->
+    <div id="header"></div>
+
+    <!-- Main Content -->
+    <main>
+        <h2>About Us</h2>
+        <div class="about-text">
+            <p>
+                Hailing from the University of South Florida, we are a team of dedicated graduate students from the Masters in Business Analytics and Information Systems program. The NYC Air Quality Dashboard is a testament to our passion for leveraging technology to drive meaningful change. This platform was born out of our final project for the Distributed Information Systems course, but it represents much more than just an academic endeavor. We recognized the pressing need for accessible, real-time air quality data, especially in a dynamic environment like New York City.
+            </p>
+
+            <p>
+                Our goal is to transform complex data into actionable insights, empowering residents and visitors of New York to make informed decisions about their health and well-being. In a world where data drives decisions, we are proud to provide a platform that bridges the gap between intricate datasets and the people who need them most.
+            </p>
+
+            <p>
+                To delve deeper into our project's source code, feel free to explore our GitHub repository. We believe in the power of open-source collaboration and invite fellow enthusiasts to view, fork, and contribute to our codebase.
+            </p>
+            <a href="https://github.com/kbp753/Assignment_LookAndFeel" target="_blank" style="color: #007bff; text-decoration: underline;">Visit our GitHub Repository</a>
+
+            <p>
+                Dive in to learn more about the individuals who poured their expertise and enthusiasm into this project:
+            </p>
+
+        </div>
+
+        <!-- Team Members -->
+        <div class="info">
+            <h4>Bhanu Prakash Konda</h4>
+            <div class="person">
+                <img src="assets/bhanu.jpeg" class="image">
+                <p>
+                    I'm Bhanu Prakash Reddy Konda, a tech enthusiast with a background in Computer Science. With prior experience as a Java Developer at Tata Consultancy Services, I've combined my skills and passion to create this platform. Here, I'm dedicated to providing accessible and reliable air quality data. My contributions include meticulous dataset selection, web development, and ensuring seamless data integration, all aimed at making air quality information readily available for your benefit.
+                </p>
+                <a href="https://www.linkedin.com/in/kbp753/" target="_blank">
+                    <button class="but">LinkedIn</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="info">
+            <h4>Sravani Dondapati</h4>
+            <div class="person">
+                <img src="assets/sravs.jpg" class="image">
+                <p>
+                    I'm Sravani, pursiung Master's in Business Analytics and Information Systems at University of South Florida.My expertise lies in web development, and I've been deeply involved in creating various web pages that make up this platform. From designing layouts to ensuring seamless navigation, I've worked to create an engaging and user-friendly online experience for our visitors.
+                    In addition to web development, I've taken on the task of sourcing and selecting the datasets used on this website.
+                </p>
+                <a href="https://www.linkedin.com/in/sravani-dondapati-08b5031b9" target="_blank">
+                    <button class="but">LinkedIn</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="info">
+            <h4>Vandana Sirpa</h4>
+            <div class="person">
+                <img src="assets/Vandana.jpg" class="image">
+                <p>
+                    I'm Vandana Sirpa, a graduate student actively pursuing a Master's degree in Business Analytics and Information Systems. I worked as a Full Stack Developer at Capgemini. My contribution to the project in designing the database model to store the data and also helped in designing the webpage.
+                </p>
+                <a href="https://www.linkedin.com/in/sirpa-vandana-a2059117b" target="_blank">
+                    <button class="but">LinkedIn</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="info">
+            <h4>Lakshmi Preetham Gupta</h4>
+            <div class="person">
+                <img src="assets/Preetham.jpg" class="image">
+                <p>
+                    Greetings, I am Preetam, a graduate student actively pursuing a Master's degree in Business Analytics and Information Systems. I worked as a Business Analyst for 1.5 years in India. For this project, I contributed in making the webpage responsive by performing CRUD operations and adding the add/edit buttons to the webpage.
+                </p>
+                <a href="https://www.linkedin.com/in/preetham-gupta-253a39183" target="_blank">
+                    <button class="but">LinkedIn</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="info">
+            <h4>Manoj Kumar Singam</h4>
+            <div class="person">
+                <img src="assets/manoj.JPEG" class="image">
+                <p>
+                    I'm Manoj kumar Singam, a graduate student pursuing a Master's degree in Business Analytics and Information Systems. I worked as a Data Engineer at Deloitte. In this project, I have designed user-friendly webpages for an enhanced user experience
+                </p>
+                <a href="https://www.linkedin.com/in/manoj-kumar-singam-42731b249" target="_blank">
+                    <button class="but">LinkedIn</button>
+                </a>
+            </div>
+        </div>
+
+        <!-- Contributions Section -->
+        <h3>Contributions</h3>
+        <p>
+            Our team has worked diligently on various facets of the NYC Air Quality Dashboard. Below are some snapshots of our contributions, showcasing the diversity and depth of our work:
+        </p>
+        <div class="screenshot-gallery">
+            <!-- Screenshot 1 -->
+            <h4>Bhanu Prakash Konda(kbp753)</h4>
+            <img src="assets/screenshot1.jpg" alt="Bhanu Prakash Contribution" style="width: 80%; margin: 10px auto; display: block; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+
+            <!-- Screenshot 2 -->
+            <h4>Sravani Dondapati(SravaniDondapati)</h4>
+            <img src="assets/SS_DIS.jpg" alt="Sravani Contribution" style="width: 80%; margin: 10px auto; display: block; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+
+            <!-- Screenshot 3 -->
+            <h4>Vandana Sirpa(VandanaSirpa)</h4>
+            <img src="assets/screenshot3.jpg" alt="Vandana Contribution" style="width: 80%; margin: 10px auto; display: block; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+
+            <!-- Screenshot 4 -->
+            <h4>Lakshmi Preetham Gupta Dogipartthi(preetham-999)</h4>
+            <img src="assets/screenshot4.jpg" alt="Preetham Contribution" style="width: 80%; margin: 10px auto; display: block; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+
+            <!-- Screenshot 5 -->
+            <h4>Manoj Kumar Singam(ManojSingam)</h4>
+            <img src="assets/screenshot5.jpg" alt="Manoj Contribution" style="width: 80%; margin: 10px auto; display: block; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        </div>
+
+
+    </main>
+
+    <!-- Placeholder for Footer -->
+    <div id="footer"></div>
+</body>
+
+</html>

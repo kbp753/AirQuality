@@ -1,7 +1,21 @@
+using AirQuality.Models;
+using AirQuality.Services;
+using Microsoft.EntityFrameworkCore;
+using YourNamespace.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient<AirQualityApiService>();
+
+// Register your hosted service
+builder.Services.AddHostedService<AirQualityDataUpdateService>();
+
+// Configure Entity Framework Core with SQL Server
+builder.Services.AddDbContext<AirQualityContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 

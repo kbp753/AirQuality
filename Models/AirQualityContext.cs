@@ -4,21 +4,29 @@ namespace AirQuality.Models
 {
     public class AirQualityContext : DbContext
     {
-        private readonly IConfiguration _configuration;
-
-        public AirQualityContext(IConfiguration configuration)
+        public AirQualityContext(DbContextOptions<AirQualityContext> options)
+            : base(options)
         {
-            _configuration = configuration;
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<AirQualityIndicator> AirQualityIndicators { get; set; }
+        public DbSet<AirQualityData> AirQualityData { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                var connectionString = _configuration.GetConnectionString("DefaultConnection");
-                optionsBuilder.UseSqlServer(connectionString);
-            }
+            // Define relationships and any additional configurations here
+            modelBuilder.Entity<AirQualityData>()
+                .HasOne(aqd => aqd.Location)
+                .WithMany(loc => loc.AirQualityData)
+                .HasForeignKey(aqd => aqd.LocationID);
+
+            modelBuilder.Entity<AirQualityData>()
+                .HasOne(aqd => aqd.AirQualityIndicator)
+                .WithMany(aqi => aqi.AirQualityData)
+                .HasForeignKey(aqd => aqd.IndicatorID);
         }
     }
 
 }
+

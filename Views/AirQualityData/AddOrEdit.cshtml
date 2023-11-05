@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Edit Air Quality Data - NYC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        main {
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            .btn.save {
+                background-color: #28a745;
+                color: #ffffff;
+            }
+
+            .btn.cancel {
+                background-color: #dc3545;
+                color: #ffffff;
+            }
+
+        a.back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+            a.back-link:hover {
+                color: #0056b3;
+            }
+    </style>
+</head>
+
+<body>
+
+    <!-- Main Content -->
+    <main>
+        <h2 id="formHeader">Add Air Quality Data</h2>
+
+        <form id="addEditDataForm">
+
+            <div class="form-group">
+                <label for="name">Air Quality Indicator Name:</label>
+                <input type="text" id="name" name="name" maxlength="255" required>
+            </div>
+
+            <div class="form-group">
+                <label for="measure">Measure:</label>
+                <input type="text" id="measure" name="measure" maxlength="255" required>
+            </div>
+
+            <div class="form-group">
+                <label for="measure_info">Measure Info:</label>
+                <textarea id="measure_info" name="measure_info"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="geo_type_name">Geographic Type:</label>
+                <input type="text" id="geo_type_name" name="geo_type_name" maxlength="255" required>
+            </div>
+
+            <div class="form-group">
+                <label for="geo_place_name">Name of the Place:</label>
+                <input type="text" id="geo_place_name" name="geo_place_name" maxlength="255" required>
+            </div>
+
+            <div class="form-group">
+                <label for="time_period">Time Period:</label>
+                <input type="text" id="time_period" name="time_period" maxlength="255" required>
+            </div>
+
+            <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="datetime-local" id="start_date" name="start_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="data_value">Air Quality Data Value:</label>
+                <input type="number" step="any" id="data_value" name="data_value" required>
+            </div>
+            <br/>
+            <button type="button" class="btn save" onclick="saveData()">Save</button>
+            <a href="/AirQualityOverview" class="btn cancel">Cancel</a>
+        </form>
+    </main>
+    <br/>
+    <br/>
+    <br />
+    <br />
+    <br />
+
+    <script>
+        function saveData() {
+            var form = document.getElementById('addEditDataForm');
+
+            if (form.checkValidity()) {
+                var formData = new FormData(form);
+                var object = {};
+
+                formData.forEach(function (value, key) {
+                    console.log("Key: " + key + " Value: " + value);
+                    object[key] = value;
+                });
+
+                var json = JSON.stringify(object);
+                console.log("JSON being sent to server: " + json);
+
+                fetch('/AirQualityData/SaveData', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: json,
+                })
+                    .then(response => {
+                        console.log("Response status: " + response.status);
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            response.text().then(text => {
+                                console.error(`Server responded with error: ${response.status} ${text}`);
+                                throw new Error(`Server responded with error: ${response.status} ${text}`);
+                            });
+                        }
+                    })
+                    .then(data => {
+                        console.log("Data received from server: ", data);
+                        var confirmation = confirm('Data saved successfully! Click "OK" to continue to AirQualityDetails.');
+                        if (confirmation) {
+                            window.location.href = '/AirQualityOverview'; // Redirect only after user confirmation
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('There was a problem saving the data.');
+                    });
+            } else {
+                form.reportValidity();
+            }
+        }
+
+
+
+
+        // Function to load data for editing
+        function loadDataForEdit() {
+            // Fetch data based on query parameters or other means
+            // and populate the form fields
+            // For example:
+            // document.getElementById('timePeriod').value = data.timePeriod;
+            // Make sure to update the form header to indicate editing mode
+            // document.getElementById('formHeader').textContent = 'Edit Air Quality Data';
+        }
+
+        // Check if we are in edit mode and load data accordingly
+        document.addEventListener("DOMContentLoaded", function () {
+            // Check URL parameters or other indicators of edit mode
+            // If edit mode, call loadDataForEdit();
+        });
+    </script>
+
+</body>
+
+</html>

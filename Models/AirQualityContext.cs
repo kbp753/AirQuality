@@ -13,6 +13,10 @@ namespace AirQuality.Models
         public DbSet<AirQualityIndicator> AirQualityIndicators { get; set; }
         public DbSet<AirQualityData> AirQualityData { get; set; }
 
+        public DbSet<AirQualityData> ReceivedDataModel { get; set; }
+
+        public DbSet<AirQualityData> AirQualityRecord { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Define relationships and any additional configurations here

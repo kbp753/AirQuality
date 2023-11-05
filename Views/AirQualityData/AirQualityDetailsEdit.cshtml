@@ -1,0 +1,167 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Air Quality Data</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        main {
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            .btn.save {
+                background-color: #28a745;
+                color: #ffffff;
+            }
+
+            .btn.cancel {
+                background-color: #dc3545;
+                color: #ffffff;
+            }
+
+        a.back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+            a.back-link:hover {
+                color: #0056b3;
+            }
+    </style>
+
+</head>
+<body>
+    <!-- Main Content -->
+    <main>
+        <h2>Edit Air Quality Data for: @Model.GeoPlaceName</h2>
+            <h3>Indicator: @Model.Name</h3>
+
+            <!-- Edit Form -->
+            <form id="editDataForm">
+                <input type="hidden" name="DataID" value="@Model.DataID" />
+            <input type="hidden" name="LocationID" value="@Model.LocationID" />
+            <input type="hidden" name="IndicatorID" value="@Model.IndicatorID" />
+            <div class="form-group">
+                <label for="DataValue">Data Value:</label>
+                <input type="text" id="DataValue" name="DataValue" value="@Model.DataValue" />
+            </div>
+                <div class="form-group">
+                    <label for="TimePeriod">Time Period:</label>
+                    <input type="text" id="TimePeriod" name="TimePeriod" value="@Model.TimePeriod" />
+                </div>
+                <div class="form-group">
+                    <label for="StartDate">Start Date:</label>
+                <input type="datetime-local" id="StartDate" name="StartDate" value="@Model.StartDate.ToString("yyyy-MM-ddTHH:mm:ss")" />
+                </div>
+                <!-- Add other fields as needed -->
+
+                <div>
+                    <button type="button" class="btn save" onclick="saveData()">Save</button>
+                <button type="button" class="btn cancel" onclick="cancelEdit()">Cancel</button>
+
+                </div>
+            </form>
+        
+        <a href="airquality-overview.html" class="back-link">Back to Air Quality Overview</a>
+    </main>
+    <script>
+        function cancelEdit() {
+            // Get the location and indicator from the model
+            var location = "@Model.LocationID";
+            var indicator = "@Model.Name";
+
+            // Construct the URL with the location and indicator
+            var url = `/AirQualityDetails/Index?locationId=${encodeURIComponent(location)}&indicator=${encodeURIComponent(indicator)}`;
+
+            window.location.href = url;
+        }
+
+
+        function saveData() {
+            var form = document.getElementById('editDataForm');
+            var formData = new FormData(form);
+            var object = {};
+
+            formData.forEach(function (value, key) {
+                object[key] = value;
+            });
+
+            var json = JSON.stringify(object);
+            console.log("JSON being sent to server: " + json);
+
+            fetch('/AirQualityData/UpdateData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: json,
+            })
+                .then(response => {
+                    var location = "@Model.LocationID";
+                    var indicator = "@Model.Name";
+
+                    // Construct the URL with the location and indicator
+                    var url = `/AirQualityDetails/Index?locationId=${encodeURIComponent(location)}&indicator=${encodeURIComponent(indicator)}`;
+                    if (response.ok) {
+                        alert('Data saved successfully!');
+                        window.location.href = url; // Redirect to the details page
+                    } else {
+                        alert('Error saving data.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was a problem saving the data.');
+                });
+        }
+    </script>
+</body>
+</html>
